@@ -26,3 +26,22 @@ export const addUser = async (formData, debug) => {
 };
 
 
+export const getUser = async () => {
+  try {
+    
+    const response = await axios.get(`${URL}/list`);
+    console.log(response)
+      if(response.status ===200){
+    return response.data.list
+      }
+      else{
+        return{}
+      }
+    // Add any further actions you want to perform after a successful submission.
+  } catch (error) {
+    console.error('Error adding user:', error);
+    return {}
+    // Handle error scenarios, e.g., display an error message to the user.
+  }
+};
+

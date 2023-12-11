@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Container, Typography, TextField, Button, TextareaAutosize, Grid } from '@mui/material';
 import {addUser} from '../../services/services.js';
 import { setCurrentUser } from '../../reduers/user.js';

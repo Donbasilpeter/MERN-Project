@@ -12,7 +12,7 @@ exports.getAllUsers = async (req, res) => {
     try {
       // Implement logic to retrieve all users from the database
       const users = await User.find();
-      res.render('list', { users });
+      res.send({'list' : users });
     } catch (error) {
       res.status(500).send('Internal Server Error');
     }
