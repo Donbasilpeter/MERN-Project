@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect('mongodb://myuser:mypassword@localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://admin:password@localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Set up middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ app.use(express.static('public'));
 // Set up routes
 app.use('/', require('./routes/userRoutes'));
 
-const port = 3000;
+const port = 5000;
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
