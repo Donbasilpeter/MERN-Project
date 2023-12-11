@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import { useSelector, useDispatch } from 'react-redux'
 import { Container, Typography, TextField, Button, TextareaAutosize, Grid } from '@mui/material';
 import {addUser} from '../../services/services.js';
+import { setCurrentUser } from '../../reduers/user.js';
+
 
 const AddUserForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -34,7 +37,8 @@ const AddUserForm = () => {
 
     if(result){
       const info = result.user
-      navigate('/success', { state: { info } });
+      dispatch(setCurrentUser(info))
+      navigate('/success');
     }
 
 
