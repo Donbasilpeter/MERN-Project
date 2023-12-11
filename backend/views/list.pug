@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  .container.mt-5
+    h2.text-center User List
+
+    if users.length > 0
+      ul.list-group.mt-3
+        each user in users
+          li.list-group-item.mb-3
+            .row
+              .col-md-6
+                strong First Name:
+                | #{user.firstName}
+                br
+                strong Last Name:
+                | #{user.lastName}
+                br
+                strong Date of Birth:
+                | #{user.dob}
+                br
+                strong Address 1:
+                | #{user.address1}
+                br
+                strong Address 2:
+                | #{user.address2}
+              .col-md-6
+                strong City:
+                | #{user.city}
+                br
+                strong Postal Code:
+                | #{user.postalCode}
+                br
+                strong Country:
+                | #{user.country}
+                br
+                strong Phone Number:
+                | #{user.phoneNumber}
+                br
+                strong Email:
+                | #{user.email}
+                br
+                strong User Notes:
+                | #{user.userNotes}
+                br
+                // Buttons for Update and Delete
+                form(action=`/update/${user._id}`, method='GET', class='d-inline mr-2')
+                  button.btn.btn-warning.btn-sm(type='submit') Update
+                form(action=`/delete/${user._id}`, method='GET', class='d-inline')
+                  button.btn.btn-danger.btn-sm(type='submit') Delete
+            br
+    else
+      .alert.alert-info.text-center.mt-3
+        p No users found.

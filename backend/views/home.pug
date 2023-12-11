@@ -1,0 +1,12 @@
+
+extends layout
+
+block content
+  .container.mt-5
+    .jumbotron.text-center
+      h1.display-4 Welcome to User Management
+      p.lead Click on the links below to manage users:
+
+    .d-flex.justify-content-center.mt-4
+      a.btn.btn-primary.btn-lg.mx-2(href='/add', role='button') Add New User
+      a.btn.btn-secondary.btn-lg.mx-2(href='/list') List All Users
