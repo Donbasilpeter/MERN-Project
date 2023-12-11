@@ -4,6 +4,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 
 // Connect to MongoDB
@@ -11,8 +12,9 @@ mongoose.connect('mongodb://admin:password@localhost:27017', { useNewUrlParser: 
 
 // Set up middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'pug');
-app.use(express.static('public'));
+
+app.use(express.json());
+app.use(cors())
 
 // Set up routes
 app.use('/', require('./routes/userRoutes'));

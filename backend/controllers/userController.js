@@ -27,7 +27,7 @@ exports.addUser = async (req, res) => {
     try {
       // Implement logic to add a user to the database
       const newUser = await User.create(req.body);
-      res.render('addUserSuccess', { user: newUser });
+      res.send({'status' : "success", data :{ user: newUser }});
     } catch (error) {
       res.status(500).send('Internal Server Error');
     }
