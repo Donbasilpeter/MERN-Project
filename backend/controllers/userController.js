@@ -18,10 +18,6 @@ exports.getAllUsers = async (req, res) => {
     }
   };
 
-exports.getAddUserForm = (req, res) => {
-  // Render a simple response for adding a user
-  res.render('addUser');
-};
 
 exports.addUser = async (req, res) => {
     try {
@@ -33,39 +29,13 @@ exports.addUser = async (req, res) => {
     }
   };
   
-
-  exports.getUpdateUserForm = async (req, res) => {
-    try {
-      // Implement logic to retrieve user details for updating
-      const user = await User.findById(req.params.id);
-  
-      // Format user data before rendering the Pug template
-      const formattedUser = {
-        _id: user._id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        dob: user.dob.toISOString().split('T')[0], // Format date to 'YYYY-MM-DD'
-        address1: user.address1,
-        address2: user.address2,
-        city: user.city,
-        postalCode: user.postalCode,
-        country: user.country,
-        phoneNumber: user.phoneNumber,
-        email: user.email,
-        userNotes: user.userNotes,
-      };
-      res.render('updateUser', { user: formattedUser });
-    } catch (error) {
-      res.status(500).send('Internal Server Error');
-    }
-  };
   
 
   exports.updateUser = async (req, res) => {
     try {
       // Implement logic to update a user in the database
-      const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-      res.render('updateUserSuccess', { user: updatedUser });
+      const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, { new: true });
+      res.send({'status' : "success", data :{ user: updatedUser }});
     } catch (error) {
       res.status(500).send('Internal Server Error');
     }
@@ -74,8 +44,8 @@ exports.addUser = async (req, res) => {
   exports.deleteUser = async (req, res) => {
     try {
       // Implement logic to delete a user from the database
-      await User.findByIdAndDelete(req.params.id);
-      res.render('deleteUserSuccess');
+      await User.findByIdAndDelete(req.body.id);
+      res.send({res:"success"})
     } catch (error) {
       res.status(500).send('Internal Server Error');
     }

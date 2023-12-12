@@ -25,6 +25,26 @@ export const addUser = async (formData, debug) => {
   }
 };
 
+export const updateUser = async (formData, debug) => {
+  try {
+    const response = await axios.post(`${URL}/update`, formData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+      if(response.data.status ==="success"){
+    return response.data.data
+      }
+      else{
+        return{}
+      }
+    // Add any further actions you want to perform after a successful submission.
+  } catch (error) {
+    console.error('Error adding user:', error);
+    return {}
+    // Handle error scenarios, e.g., display an error message to the user.
+  }
+};
 
 export const getUser = async () => {
   try {
@@ -44,4 +64,28 @@ export const getUser = async () => {
     // Handle error scenarios, e.g., display an error message to the user.
   }
 };
+
+export const deleteUser = async (id) => {
+  try {
+    const response = await axios.post(`${URL}/delete`, {"id":id}, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    console.log(response);
+    
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      return {};
+    }
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    return {};
+  }
+};
+
+
+
 

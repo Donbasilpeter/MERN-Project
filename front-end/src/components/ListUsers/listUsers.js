@@ -10,8 +10,8 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUser } from '../../services/services';
-import { setUserList } from '../../reduers/user';
+import { getUser, deleteUser } from '../../services/services';
+import { setUserList,setCurrentUser } from '../../reduers/user';
 
 const UserList = () => {
     const navigate = useNavigate();
@@ -30,13 +30,20 @@ const UserList = () => {
 
         fetchData();
     }, [dispatch]);
+    const getDataById = (dataArray, targetId) => {
+        return dataArray.find(item => item._id === targetId);
+      };
 
     const handleUpdateClick = (userId) => {
+
+        dispatch(setCurrentUser(getDataById(users,userId)));
+        
         navigate(`/update/${userId}`);
     };
 
-    const handleDeleteClick = (userId) => {
-        navigate(`/delete/${userId}`);
+    const handleDeleteClick = async (userId) => {
+        const result = await deleteUser(userId)
+        navigate(`/delete`);
     };
 
     return (

@@ -40,9 +40,8 @@ const AddUserForm = () => {
       dispatch(setCurrentUser(info))
       navigate('/success');
     }
-
-
   };
+
   return (
     <Container sx={{ mt: 5, mb: 4 }}>
       <Typography variant="h2" align="center">

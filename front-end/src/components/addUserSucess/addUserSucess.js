@@ -7,7 +7,7 @@ const excludedKeys = ['_id', '__v']; // Add keys you want to exclude from the li
 const UserAddedSuccessfully = () => {
   const user = useSelector((state) => state.user.currentUser);
 
-  const filteredUserEntries = Object.entries(user).filter(([key]) => !excludedKeys.includes(key));
+  const filteredUserEntries = user ? Object.entries(user).filter(([key]) => !excludedKeys.includes(key)) : []
 
   return (
     <Container mt={5} maxWidth="md">
@@ -20,7 +20,7 @@ const UserAddedSuccessfully = () => {
       </Typography>
 
       <List>
-        {filteredUserEntries.map(([key, value]) => (
+        {filteredUserEntries && filteredUserEntries.map(([key, value]) => (
           <ListItem key={key} sx={{ py: 1 }}>
             <ListItemText
               primary={
